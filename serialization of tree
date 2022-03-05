@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+class Node
+{
+    public:
+    int data;
+    Node *left,*right;
+    Node(int d)
+    {
+        data=d;
+        left=NULL;
+        right=NULL;
+    }
+};
+void printout(Node *root,vector<int>&ans)
+{
+    if(root==NULL)
+    {
+        ans.push_back(-1);
+        return ;
+    }
+    printout(root->left,ans);
+    ans.push_back(root->data);
+    printout(root->right,ans);
+}
+int main()
+{
+    Node *root=new Node(10);
+    root->left=new Node(20);
+    root->right=new Node(30);
+    root->left->left=new Node(40);
+    root->left->right=new Node(50);
+    root->right->right=new Node(60);
+    root->right->left=new Node(70);
+    vector<int> ans;
+    printout(root,ans);
+    for(int i : ans){
+            if(i==-1)
+            continue;
+        cout<<i<<" ";
+    }
+    return 0;
+}
